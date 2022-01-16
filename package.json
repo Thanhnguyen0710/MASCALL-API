@@ -2,9 +2,9 @@
   "name": "mascall-api",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "src/index.js",
   "scripts": {
-    "start": "node index.js",
+    "start": "node src/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -20,6 +20,7 @@
   "dependencies": {
     "express": "^4.17.2",
     "install": "^0.13.0",
+    "mongodb": "^4.3.0",
     "npm": "^8.3.0"
   },
   "devDependencies": {
