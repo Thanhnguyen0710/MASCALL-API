@@ -7,7 +7,6 @@ const User = new Schema({
   phoneNumber: {type: String},
   photoURL: {type: String},
   email: {type: String},
-  emailVerified: {type: Boolean},
   isAnonymous: {type: Boolean},
   uid: {type: String},
 })

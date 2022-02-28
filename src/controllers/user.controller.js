@@ -5,7 +5,11 @@ module.exports.register = async (req, res) => {
   try {
     const oldUser = await User.findOne(user)
     if (oldUser) {
-      res.status(401).send("User Exist");
+      res.status(200).send({
+        errorCode: '0',
+        errorMessages: 'Success',
+        data: oldUser
+      })
     } else {
       const newUser = new User(user);
       await newUser.save();
@@ -24,11 +28,16 @@ module.exports.login = async (req, res) => {
   const email = req.body;
   try {
     const user = await User.findOne(email);
-    res.status(200).send({
-      errorCode: '0',
-      errorMessages: 'Success',
-      data: user
-    })
+    if (user) {
+      res.status(200).send({
+        errorCode: '0',
+        errorMessages: 'Success',
+        data: user
+      })
+    } else {
+      res.status(401).send("Bad request");
+    }
+    
   } catch (error) {
     res.status(401).send("Bad request");
   }
