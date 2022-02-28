@@ -19,8 +19,11 @@
   "homepage": "https://github.com/Thanhnguyen0710/MASCALL-API#readme",
   "dependencies": {
     "express": "^4.17.2",
+    "firebase": "^9.6.7",
+    "firebase-admin": "^10.0.2",
     "install": "^0.13.0",
     "mongodb": "^4.3.0",
+    "mongoose": "^6.1.6",
     "npm": "^8.3.0"
   },
   "devDependencies": {

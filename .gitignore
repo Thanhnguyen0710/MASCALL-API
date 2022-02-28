@@ -1,21 +1,3 @@
-node_modules/cacheable-request/node_modules/lowercase-keys/index.d.ts
-node_modules/accepts/index.js
 package-lock.json
-node_modules/accepts/package.json
-node_modules/ansi-align/CHANGELOG.md
-node_modules/ansi-align/index.js
-node_modules/ansi-align/LICENSE
-node_modules/ansi-align/package.json
-node_modules/ansi-align/README.md
-node_modules/ansi-regex/index.d.ts
-node_modules/ansi-regex/index.js
-node_modules/ansi-regex/license
-node_modules/ansi-regex/package.json
-node_modules/ansi-regex/readme.md
-node_modules/ansi-styles/index.d.ts
-node_modules/ansi-styles/index.js
-node_modules/ansi-styles/license
-node_modules/ansi-styles/package.json
-node_modules/ansi-styles/readme.md
 # dependencies
 node_modules
