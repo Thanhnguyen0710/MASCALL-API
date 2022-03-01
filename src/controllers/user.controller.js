@@ -42,3 +42,17 @@ module.exports.login = async (req, res) => {
     res.status(401).send("Bad request");
   }
 }
+
+module.exports.updateUser = async (req, res) => {
+  const user = req.body;
+  try {
+    await User.updateOne({_id: user._id}, user);
+    res.status(200).send({
+      errorCode: '0',
+      errorMessages: 'Success',
+      data: user
+    })
+  } catch (error) {
+    res.status(401).send("Bad request");
+  }
+}

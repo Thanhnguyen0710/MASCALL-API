@@ -1,6 +1,6 @@
 const express = require('express')
 const db = require('./models/db');
-const {getUser} = require('./services/auth');
+// const {getUser} = require('./services/auth');
 
 db.connect();
 
