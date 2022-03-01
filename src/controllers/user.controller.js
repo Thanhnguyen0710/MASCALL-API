@@ -65,7 +65,11 @@ module.exports.searchUser = async (req, res) => {
     const data = dataPhone.concat(dataEmail.filter(function (item) {
       return dataPhone.indexOf(item) < 0;
     }));
-    res.send(data);
+    res.status(200).send({
+      errorCode: '0',
+      errorMessages: 'Success',
+      data: data
+    })
   } catch (error) {
     res.status(401).send("Bad request");
   }
