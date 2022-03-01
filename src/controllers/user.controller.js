@@ -56,3 +56,17 @@ module.exports.updateUser = async (req, res) => {
     res.status(401).send("Bad request");
   }
 }
+
+module.exports.searchUser = async (req, res) => {
+  const query = req.query.search;
+  try {
+    const dataPhone = await User.find({phoneNumber: query[0] === '0' ? new RegExp(query.slice(1, query.length)) : new RegExp(query)});
+    const dataEmail = await User.find({email: new RegExp(query.search)});
+    const data = dataPhone.concat(dataEmail.filter(function (item) {
+      return dataPhone.indexOf(item) < 0;
+    }));
+    res.send(data);
+  } catch (error) {
+    res.status(401).send("Bad request");
+  }
+}
