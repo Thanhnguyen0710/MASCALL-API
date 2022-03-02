@@ -60,7 +60,7 @@ module.exports.updateUser = async (req, res) => {
 module.exports.searchUser = async (req, res) => {
   const query = req.query.search;
   try {
-    const dataPhone = await User.find({phoneNumber: query[0] === '0' ? new RegExp(query.slice(1, query.length)) : new RegExp(query)});
+    const dataPhone = await User.find({phoneNumber: new RegExp(query)});
     const dataEmail = await User.find({email: new RegExp(query)});
     const data = dataPhone.concat(dataEmail.filter(function (item) {
       return dataPhone.indexOf(item) < 0;
