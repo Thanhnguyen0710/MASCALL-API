@@ -95,3 +95,17 @@ module.exports.updateContact = async (req, res) => {
     res.status(401).send("Bad request");
   }
 }
+
+module.exports.deleteContact = async (req, res) => {
+  const query = req.query.idContact;
+  try {
+    await Contact.deleteOne({_id: query});
+    res.status(200).send({
+      errorCode: '0',
+      errorMessages: 'Success',
+      data: null
+    })
+  } catch (error) {
+    res.status(401).send("Bad request");
+  }
+}

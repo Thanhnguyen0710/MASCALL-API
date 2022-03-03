@@ -5,6 +5,7 @@ const authMiddleware = require('../middlewares/auth.middleware');
 
 contactRouter.post('/', authMiddleware.isLogin, controller.addContact);
 contactRouter.get('/', authMiddleware.isLogin, controller.getContact);
-contactRouter.put('/', authMiddleware.isLogin, controller.updateContact)
+contactRouter.put('/', authMiddleware.isLogin, controller.updateContact);
+contactRouter.delete('/', authMiddleware.isLogin, controller.deleteContact);
 
 module.exports = contactRouter;
