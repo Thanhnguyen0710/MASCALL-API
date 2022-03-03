@@ -32,15 +32,15 @@ module.exports.addContact = async (req, res) => {
         emailMe: contact.emailMe
       });
       await newContact.save();
-      res.status(201).send({
-        errorCode: '4',
+      res.status(200).send({
+        errorCode: '0',
         errorMessages: 'User already exists',
         data: null
       })
     } else {
       newContact = new Contact(contact);
       await newContact.save();
-      res.status(201).send({
+      res.status(200).send({
         errorCode: '0',
         errorMessages: 'Success',
         data: newContact
