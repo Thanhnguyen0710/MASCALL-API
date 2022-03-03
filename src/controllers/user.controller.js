@@ -1,4 +1,5 @@
 const User = require('../models/User');
+const Contact = require('../models/Contact');
 
 module.exports.register = async (req, res) => {
   const user = req.body;
@@ -47,6 +48,7 @@ module.exports.updateUser = async (req, res) => {
   const user = req.body;
   try {
     await User.updateOne({_id: user._id}, user);
+    await Contact.updateMany({email: user.email}, user);
     res.status(200).send({
       errorCode: '0',
       errorMessages: 'Success',

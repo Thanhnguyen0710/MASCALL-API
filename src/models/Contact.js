@@ -8,6 +8,7 @@ const Contact = new Schema({
   photoURL: {type: String},
   email: {type: String},
   emailMe: {type: String},
+  isUser: {type: Boolean, default: false},
 })
 
 module.exports = mongoose.model('Contact', Contact);

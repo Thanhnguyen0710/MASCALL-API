@@ -38,7 +38,8 @@ module.exports.addContact = async (req, res) => {
         photoURL: userFriend.photoURL, 
         displayName: userFriend.displayName, 
         phoneNumber: userFriend.phoneNumber, 
-        emailMe: contact.emailMe
+        emailMe: contact.emailMe,
+        isUser: true,
       });
       await newContact.save();
       res.status(200).send({
