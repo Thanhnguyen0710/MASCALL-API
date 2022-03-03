@@ -3,7 +3,7 @@ const User = require('../models/User');
 module.exports.register = async (req, res) => {
   const user = req.body;
   try {
-    const oldUser = await User.findOne(user)
+    const oldUser = await User.findOne({email: user.email})
     if (oldUser) {
       res.status(200).send({
         errorCode: '0',
