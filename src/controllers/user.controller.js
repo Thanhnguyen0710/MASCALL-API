@@ -48,7 +48,10 @@ module.exports.updateUser = async (req, res) => {
   const user = req.body;
   try {
     await User.updateOne({_id: user._id}, user);
-    await Contact.updateMany({email: user.email}, user);
+    await Contact.updateMany(
+      {email: user.email}, 
+      {phoneNumber: user.phoneNumber, photoURL: user.photoURL, displayName: user.displayName}
+    );
     res.status(200).send({
       errorCode: '0',
       errorMessages: 'Success',
