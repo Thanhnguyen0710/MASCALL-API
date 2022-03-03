@@ -24,7 +24,15 @@ module.exports.addContact = async (req, res) => {
     const userFriend = await User.findOne({email: contact.email});
     let newContact = null;
     if (userFriend) {
-      console.log(userFriend.email);
+      const contactUserFriend = await Contact.findOne({email: userFriend.email, emailMe: contact.emailMe});
+      if (contactUserFriend) {
+        res.status(201).send({
+          errorCode: '3',
+          errorMessages: 'Contact already exists',
+          data: null
+        })
+        return;
+      }
       newContact = new Contact({
         email: userFriend.email, 
         photoURL: userFriend.photoURL, 
