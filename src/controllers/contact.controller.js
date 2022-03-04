@@ -95,7 +95,7 @@ module.exports.updateContact = async (req, res) => {
       return;
     }
     const contactFriend = await Contact.findOne({email: contact.email});
-    if (contactFriend && contactFriend._id !== contact._id) {
+    if (contactFriend && contactFriend._id.toString() !== contact._id) {
       res.status(201).send({
         errorCode: '3',
         errorMessages: 'Contact already exists',
