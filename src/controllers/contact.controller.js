@@ -105,7 +105,7 @@ module.exports.updateContact = async (req, res) => {
     }
     const userFriend = await User.findOne({email: contact.email});
     if (userFriend) {
-      newUpdateContact = {
+      const newUpdateContact = {
         email: userFriend.email, 
         photoURL: userFriend.photoURL, 
         displayName: userFriend.displayName, 
@@ -113,11 +113,11 @@ module.exports.updateContact = async (req, res) => {
         emailMe: contact.emailMe,
         isUser: true,
       };
-      await Contact.updateOne({_id: contact._id}, newUpdateContact);
+      const dataRes = await Contact.updateOne({_id: contact._id}, newUpdateContact);
       res.status(200).send({
         errorCode: '0',
         errorMessages: 'Success',
-        data: contact
+        data: dataRes
       })
     } else {
       await Contact.updateOne( {_id: contact._id}, contact);
