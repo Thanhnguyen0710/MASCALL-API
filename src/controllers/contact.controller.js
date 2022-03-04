@@ -86,12 +86,47 @@ module.exports.getContact = async (req, res) => {
 module.exports.updateContact = async (req, res) => {
   const contact = req.body;
   try {
-    await Contact.updateOne({_id: contact._id}, contact);
-    res.status(200).send({
-      errorCode: '0',
-      errorMessages: 'Success',
-      data: contact
-    })
+    if (contact.email === contact.emailMe) {
+      res.status(201).send({
+        errorCode: '2',
+        errorMessages: 'Email no vailid',
+        data: null
+      })
+      return;
+    }
+    const contactFriend = await Contact.findOne({email: contact.email});
+    if (contactFriend) {
+      res.status(201).send({
+        errorCode: '3',
+        errorMessages: 'Contact already exists',
+        data: null
+      })
+      return;
+    }
+    const userFriend = await User.findOne({email: contact.email});
+    if (userFriend) {
+      newUpdateContact = {
+        email: userFriend.email, 
+        photoURL: userFriend.photoURL, 
+        displayName: userFriend.displayName, 
+        phoneNumber: userFriend.phoneNumber, 
+        emailMe: contact.emailMe,
+        isUser: true,
+      };
+      await Contact.updateOne({_id: contact._id}, newUpdateContact);
+      res.status(200).send({
+        errorCode: '0',
+        errorMessages: 'Success',
+        data: contact
+      })
+    } else {
+      await Contact.updateOne( {_id: contact._id}, contact);
+      res.status(200).send({
+        errorCode: '0',
+        errorMessages: 'Success',
+        data: contact
+      });
+    }
   } catch (error) {
     res.status(401).send("Bad request");
   }

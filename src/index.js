@@ -2,8 +2,6 @@ const express = require('express')
 const db = require('./models/db');
 const userRouter = require('./routers/user.router');
 const contactRouter = require('./routers/contact.router');
-// const {getUser} = require('./services/auth');
-
 db.connect();
 
 const app = express()
@@ -17,7 +15,6 @@ app.use('/contact', contactRouter);
 
 app.get('/', (req, res) => {
   res.send('Hello World!');
-  // getUser();
 })
 
 app.listen(port, () => {
