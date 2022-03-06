@@ -30,7 +30,11 @@ module.exports.getRoom = async (req, res) => {
         }
       }
     })
-    res.send(chatRooms)
+    res.status(200).send({
+      errorCode: '0',
+      errorMessages: 'Success',
+      data: chatRooms
+    })
   } catch (error) {
     res.status(401).send("Bad request");
   }
