@@ -1,5 +1,6 @@
 const Contact = require('../models/Contact');
 const User = require('../models/User');
+const ChatRoom = require('../models/ChatRoom');
 
 module.exports.addContact = async (req, res) => {
   const contact = req.body;
@@ -33,6 +34,7 @@ module.exports.addContact = async (req, res) => {
         })
         return;
       }
+
       newContact = new Contact({
         email: userFriend.email, 
         photoURL: userFriend.photoURL, 
@@ -42,6 +44,16 @@ module.exports.addContact = async (req, res) => {
         isUser: true,
       });
       await newContact.save();
+
+      const chatRooms = await ChatRoom.find({email: {"$all": [contact.emailMe, userFriend.email]}});
+      const room = chatRooms.filter(data => data.email.length === 2)
+      if (room.length === 0) {
+        const newChatRoom = new ChatRoom({
+          email : [contact.emailMe, userFriend.email]
+        })
+        await newChatRoom.save();
+      }
+
       res.status(200).send({
         errorCode: '0',
         errorMessages: 'User already exists',

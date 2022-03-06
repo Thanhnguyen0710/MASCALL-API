@@ -2,6 +2,7 @@ const express = require('express')
 const db = require('./models/db');
 const userRouter = require('./routers/user.router');
 const contactRouter = require('./routers/contact.router');
+const chatRoomRouter = require('./routers/chatRoom.router');
 db.connect();
 
 const app = express()
@@ -12,6 +13,7 @@ app.use(express.urlencoded({ extended: true }))
 
 app.use('/user', userRouter);
 app.use('/contact', contactRouter);
+app.use('/chatroom', chatRoomRouter);
 
 app.get('/', (req, res) => {
   res.send('Hello World!');
