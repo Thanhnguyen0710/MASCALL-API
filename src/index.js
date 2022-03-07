@@ -23,22 +23,22 @@ app.get('/', (req, res) => {
   res.send('Hello World!');
 })
 
-io.on('connection', (socket) => {
-  console.log('a user connected');
-  socket.on('join', (room) => {
-    console.log(`Socket ${socket.id} joining ${room}`);
-    socket.join(room);
-  });
+// io.on('connection', (socket) => {
+//   console.log('a user connected');
+//   socket.on('join', (room) => {
+//     console.log(`Socket ${socket.id} joining ${room}`);
+//     socket.join(room);
+//   });
 
-  socket.on('chat', (msg) => {
-    console.log('message: ' + msg.message);
-    io.emit('chat', msg);
-  });
-  socket.on('disconnect', () => {
-    console.log('user disconnected');
-  });
-});
+//   socket.on('chat', (msg) => {
+//     console.log('message: ' + msg.message);
+//     io.emit('chat', msg);
+//   });
+//   socket.on('disconnect', () => {
+//     console.log('user disconnected');
+//   });
+// });
 
-server.listen(port, () => {
+app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`)
 })
