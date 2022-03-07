@@ -7,7 +7,7 @@ const Chat = new Schema({
   updatedDate: {type: Date, default: Date.now},
   email: {type: Array},
   type: {type: String},
-  content: {type: String | Array},
+  content: {type: String || Array},
 })
 
 module.exports = mongoose.model('Chat', Chat);
