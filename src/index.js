@@ -43,7 +43,7 @@ io.on('connection', (socket) => {
     // console.log('message: ' + msg.message);
     const newMessage = await addNewMessage(msg.room, msg.message);
     console.log("new messages", newMessage);
-    io.to(msg.room).emit('chat', newMessage);
+    io.to(msg.room).emit('chat', {room: msg.room, message: newMessage});
   });
 
   socket.on('disconnect', () => {
