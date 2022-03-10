@@ -3,6 +3,7 @@ const db = require('./models/db');
 const userRouter = require('./routers/user.router');
 const contactRouter = require('./routers/contact.router');
 const chatRoomRouter = require('./routers/chatRoom.router');
+const {addNewMessage} = require('./services/message');
 db.connect();
 
 const app = express()
@@ -25,15 +26,26 @@ app.get('/', (req, res) => {
 
 io.on('connection', (socket) => {
   console.log('a user connected');
+  // io.use((socket, next) => {
+  //   const token = socket.handshake.auth.token;
+  //   console.log(token)
+  //   const err = new Error("not authorized");
+  //   err.data = { content: "Please retry later" }; // additional details
+  //   next();
+  // });
+
   socket.on('join', (room) => {
     console.log(`Socket ${socket.id} joining ${room}`);
     socket.join(room);
   });
 
-  socket.on('chat', (msg) => {
-    console.log('message: ' + msg.message);
-    io.emit('chat', msg);
+  socket.on('chat', async (msg) => {
+    // console.log('message: ' + msg.message);
+    const newMessage = await addNewMessage(msg.room, msg.message);
+    console.log("new messages", newMessage);
+    io.to(msg.room).emit('chat', newMessage);
   });
+
   socket.on('disconnect', () => {
     console.log('user disconnected');
   });

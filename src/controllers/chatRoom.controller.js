@@ -19,7 +19,7 @@ module.exports.addRoom = async (req, res) => {
 module.exports.getRoom = async (req, res) => {
   const query = req.query.email;
   try {
-    const chatRooms = await ChatRoom.find({email: new RegExp(query), lastMessage: {"$ne": null}}).sort({updatedDate: -1});
+    const chatRooms = await ChatRoom.find({email: new RegExp(query), messages: {"$ne": null}}).sort({updatedDate: -1});
     for (let i = 0 ; i < chatRooms.length ; i++) {
       if (chatRooms[i].email.length === 2) {
         const emailFriend = chatRooms[i].email.filter(email => email !== query)[0];
