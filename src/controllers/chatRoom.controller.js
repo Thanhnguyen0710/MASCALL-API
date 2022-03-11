@@ -21,14 +21,8 @@ module.exports.getRoom = async (req, res) => {
   try {
     const chatRooms = await ChatRoom.find({email: new RegExp(query), messages: {"$ne": null}}).sort({updatedDate: -1});
     for (let i = 0 ; i < chatRooms.length ; i++) {
-      if (chatRooms[i].email.length === 2) {
-        const emailFriend = chatRooms[i].email.filter(email => email !== query)[0];
-        const userFriend = await User.findOne({email: emailFriend});
-        if (userFriend) {
-          chatRooms[i].name = userFriend.displayName;
-          chatRooms[i].photoURL = userFriend.photoURL;
-        }
-      }
+      const user = await User.find({email: {'$in': chatRooms[i].email}})
+      chatRooms[i].user = user.filter(data => data.email !== query);
     }
     
     res.status(200).send({
