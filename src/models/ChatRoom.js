@@ -13,7 +13,7 @@ const ChatRoom = new Schema({
     {
       type: {type: String, required: true},
       email: {type: String, required: true},
-      content: {type: String,  required: true},
+      content: {type: String || Array,  required: true},
       createdDate: {type: Date, default: Date.now}
     }
   ]

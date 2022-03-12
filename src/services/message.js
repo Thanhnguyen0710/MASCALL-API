@@ -5,7 +5,7 @@ module.exports.addNewMessage = async (room_id, message) => {
     const chatRoom = await ChatRoom.findOneAndUpdate({_id: room_id}, {"$push": {messages: message}}, {new: true});
     return chatRoom.messages[chatRoom.messages.length - 1]
   } catch (err) {
-    console.lof(err)
+    console.log(err)
   }
 }
 
