@@ -24,6 +24,8 @@ app.get('/', (req, res) => {
   res.send('Hello World!');
 })
 
+let userOnline = [];
+
 io.on('connection', (socket) => {
   console.log('a user connected');
   // io.use((socket, next) => {
@@ -33,18 +35,19 @@ io.on('connection', (socket) => {
   //   err.data = { content: "Please retry later" }; // additional details
   //   next();
   // });
+  const userOnlineRoom = [];
 
   socket.on('join', (room) => {
     console.log(`Socket ${socket.id} joining ${room}`);
     socket.join(room);
     const emailRegexr = /^\w[\w\d\.]+@[\w\.]+\w$/
-    const userOnline = [];
     socket.rooms.forEach(item => {
-      if (item.match(emailRegexr) && !room.includes(item) ) {
-        userOnline.push(item);
+      if (item.match(emailRegexr)) {
+        userOnlineRoom.push(item);
       }
     })
-    io.to(room).emit('userOnline', userOnline);
+    userOnline.push(...userOnlineRoom);
+    io.to(userOnline).emit('userOnline', userOnline);
   });
 
   socket.on('chat', async (msg) => {
@@ -60,6 +63,9 @@ io.on('connection', (socket) => {
   });
 
   socket.on('disconnect', () => {
+    const userOnlineCurrent = userOnline.filter(item => !userOnlineRoom.includes(item));
+    io.to(userOnline).emit('userOnline', userOnlineCurrent);
+    userOnline = userOnlineCurrent;
     console.log('user disconnected');
   });
 });
