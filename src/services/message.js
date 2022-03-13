@@ -9,4 +9,11 @@ module.exports.addNewMessage = async (room_id, message) => {
   }
 }
 
-// module.exports.getRoom = async ()
+module.exports.deleteMessage = async (room_id, message) => {
+  try {
+    await ChatRoom.updateOne({_id: room_id}, {"$pull": {messages: message}});
+    return message
+  } catch (err) {
+    console.log(err)
+  }
+}

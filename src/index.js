@@ -3,7 +3,7 @@ const db = require('./models/db');
 const userRouter = require('./routers/user.router');
 const contactRouter = require('./routers/contact.router');
 const chatRoomRouter = require('./routers/chatRoom.router');
-const {addNewMessage} = require('./services/message');
+const {addNewMessage, deleteMessage} = require('./services/message');
 db.connect();
 
 const app = express()
@@ -40,10 +40,15 @@ io.on('connection', (socket) => {
   });
 
   socket.on('chat', async (msg) => {
-    // console.log('message: ' + msg.message);
     const newMessage = await addNewMessage(msg.room, msg.message);
     console.log("new messages", newMessage);
     io.to(msg.room).emit('chat', {room: msg.room, message: newMessage});
+  });
+
+  socket.on('delete', async (msg) => {
+    const oldMessage = await deleteMessage(msg.room, msg.message);
+    console.log("old messages", oldMessage);
+    io.to(msg.room).emit('delete', {room: msg.room, message: oldMessage});
   });
 
   socket.on('disconnect', () => {
