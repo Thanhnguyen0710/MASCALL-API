@@ -37,6 +37,14 @@ io.on('connection', (socket) => {
   socket.on('join', (room) => {
     console.log(`Socket ${socket.id} joining ${room}`);
     socket.join(room);
+    const emailRegexr = /^\w[\w\d\.]+@[\w\.]+\w$/
+    const userOnline = [];
+    socket.rooms.forEach(item => {
+      if (item.match(emailRegexr) && !room.includes(item) ) {
+        userOnline.push(item);
+      }
+    })
+    io.to(room).emit('userOnline', userOnline);
   });
 
   socket.on('chat', async (msg) => {
