@@ -11,7 +11,7 @@ module.exports.addNewMessage = async (room_id, message) => {
 
 module.exports.deleteMessage = async (room_id, message) => {
   try {
-    await ChatRoom.updateOne({_id: room_id}, {"$pull": {messages: message}});
+    await ChatRoom.updateOne({_id: room_id}, {"$pull": {messages: {_id: message._id}}});
     return message
   } catch (err) {
     console.log(err)
