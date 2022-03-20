@@ -49,7 +49,8 @@ module.exports.addContact = async (req, res) => {
       const room = chatRooms.filter(data => data.email.length === 2)
       if (room.length === 0) {
         const newChatRoom = new ChatRoom({
-          email : [contact.emailMe, userFriend.email]
+          email : [contact.emailMe, userFriend.email],
+          unSeens: [{email: contact.emailMe}, {email: userFriend.email}]
         })
         await newChatRoom.save();
       }

@@ -4,6 +4,10 @@ const User = require('../models/User');
 module.exports.addRoom = async (req, res) => {
   const chatRoom = req.body;
   try {
+    chatRoom.unSeens = [];
+    chatRoom.email.forEach(element => {
+      chatRoom.unSeens.push({email: element});
+    });
     const newChatRoom = new ChatRoom(chatRoom);
     await newChatRoom.save();
     res.status(200).send({
@@ -12,7 +16,7 @@ module.exports.addRoom = async (req, res) => {
       data: newChatRoom
     })
   } catch (error) {
-    res.status(401).send("Bad request");
+    res.status(404).send("Bad request");
   }
 }
 

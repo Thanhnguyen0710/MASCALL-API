@@ -17,6 +17,12 @@ const ChatRoom = new Schema({
       contents: {type: Array},
       createdDate: {type: Date, default: Date.now}
     }
+  ],
+  unSeens: [
+    {
+      email: {type: String, required: true},
+      countMess: {type: Number, default: 0},
+    }
   ]
 })
 
