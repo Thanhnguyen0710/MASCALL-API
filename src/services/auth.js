@@ -51,10 +51,16 @@ module.exports.verifyToken = async (token) => {
 }
 
 module.exports.sendNoti = async (fcmToken, message) => {
+  let contentImage = '';
+  if (message.type !== "text") {
+    const countImage = message.contents?.length > 0 ? message.contents.length : 1
+    contentImage = message.name.split(" ")[0] +  " đã gửi " + countImage + " ảnh.";
+  }
+
   var payload = {
     notification: {
       title: message.name,
-      body: message.type !== "text" ? (message.name.split(" ")[0] +  " đã gửi " + message.content ? '1' : message.contents.length + " ảnh."  ) : message.content,
+      body: message.type !== "text" ? contentImage : message.content,
     },
   };
 
