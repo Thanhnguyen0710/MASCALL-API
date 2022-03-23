@@ -7,5 +7,6 @@ userRouter.post('/register', controller.register);
 userRouter.post('/login', controller.login);
 userRouter.put('/update',authMiddleware.isLogin, controller.updateUser);
 userRouter.get('/search',authMiddleware.isLogin, controller.searchUser);
+userRouter.put('/updatefcmtoken/:id', authMiddleware.isLogin, controller.updateFCMToken);
 
 module.exports = userRouter;

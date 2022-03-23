@@ -79,3 +79,18 @@ module.exports.searchUser = async (req, res) => {
     res.status(401).send("Bad request");
   }
 }
+
+module.exports.updateFCMToken = async (req, res) => {
+  const idUser = req.params.id;
+  const body = req.body;
+  try {
+    await User.updateOne({_id: idUser}, {fcmToken: body.fcmToken}, {upsert: true});
+    res.status(200).send({
+      errorCode: '0',
+      errorMessages: 'Success',
+      data: body
+    })
+  } catch (error) {
+    res.status(404).send("Bad request");
+  }
+}

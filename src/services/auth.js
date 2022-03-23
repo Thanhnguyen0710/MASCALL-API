@@ -49,3 +49,18 @@ admin.initializeApp({
 module.exports.verifyToken = async (token) => {
   return await admin.auth().verifyIdToken(token, true);
 }
+
+module.exports.sendNoti = (fcmToken, message) => {
+  var payload = {
+    notification: {
+      title: message.name,
+      body: message.type !== "text" ? (message.name.split(" ")[0] +  " đã gửi " + message.content ? '1' : message.contents.length + " ảnh."  ) : message.content,
+    },
+  };
+
+  var options = {
+    priority: 'high',
+    timeToLive: 60 * 60 * 24,
+  };
+  admin.messaging().sendToDevice(fcmToken,payload, options);
+}

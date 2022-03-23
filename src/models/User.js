@@ -9,6 +9,7 @@ const User = new Schema({
   email: {type: String},
   isAnonymous: {type: Boolean},
   uid: {type: String},
+  fcmToken: {type: String}
 })
 
 module.exports = mongoose.model('User', User);

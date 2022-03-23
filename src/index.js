@@ -4,6 +4,7 @@ const userRouter = require('./routers/user.router');
 const contactRouter = require('./routers/contact.router');
 const chatRoomRouter = require('./routers/chatRoom.router');
 const {addNewMessage, deleteMessage, deleUnSeen} = require('./services/message');
+const {sendNoti} = require('./services/auth');
 db.connect();
 
 const app = express()
@@ -53,6 +54,7 @@ io.on('connection', (socket) => {
   socket.on('chat', async (msg) => {
     const newMessage = await addNewMessage(msg.room, msg.message);
     console.log("new messages", newMessage);
+    sendNoti(msg.fcmToken, msg.message)
     io.to(msg.room).emit('chat', {room: msg.room, message: newMessage});
   });
 
