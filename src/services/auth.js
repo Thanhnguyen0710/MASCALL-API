@@ -50,7 +50,7 @@ module.exports.verifyToken = async (token) => {
   return await admin.auth().verifyIdToken(token, true);
 }
 
-module.exports.sendNoti = (fcmToken, message) => {
+module.exports.sendNoti = async (fcmToken, message) => {
   var payload = {
     notification: {
       title: message.name,
@@ -62,5 +62,7 @@ module.exports.sendNoti = (fcmToken, message) => {
     priority: 'high',
     timeToLive: 60 * 60 * 24,
   };
-  admin.messaging().sendToDevice(fcmToken,payload, options);
+  if (fcmToken.length > 0) {
+    await admin.messaging().sendToDevice(fcmToken,payload, options);
+  }
 }
