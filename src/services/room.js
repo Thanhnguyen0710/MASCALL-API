@@ -1,4 +1,5 @@
 const ChatRoom = require('../models/ChatRoom');
+const User = require('../models/User');
 
 module.exports.addRoom = async (room) => {
   try {
