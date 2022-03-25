@@ -13,6 +13,8 @@ module.exports.addRoom = async (room) => {
             unSeens: unSeens
           })
           await newChatRoom.save();
+          const user = await User.find({email: {'$in': newChatRoom.email}})
+          newChatRoom.user = user;
           return newChatRoom;
         }
     } else {
@@ -21,6 +23,8 @@ module.exports.addRoom = async (room) => {
       room.unSeens = unSeens;
       const newChatRoom = new ChatRoom(room)
       await newChatRoom.save();
+      const user = await User.find({email: {'$in': newChatRoom.email}})
+      newChatRoom.user = user;
       return newChatRoom;
     }
   } catch (err) {
