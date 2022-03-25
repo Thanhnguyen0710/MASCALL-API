@@ -50,7 +50,7 @@ module.exports.verifyToken = async (token) => {
   return await admin.auth().verifyIdToken(token, true);
 }
 
-module.exports.sendNoti = async (fcmToken, message) => {
+module.exports.sendNoti = async (fcmToken, message, roomId) => {
   let contentImage = '';
   if (message.type !== "text") {
     const countImage = message.contents?.length > 0 ? message.contents.length : 1
@@ -62,6 +62,9 @@ module.exports.sendNoti = async (fcmToken, message) => {
       title: message.name,
       body: message.type !== "text" ? contentImage : message.content,
     },
+    data: {
+      roomId: roomId
+    }
   };
 
   var options = {

@@ -4,6 +4,7 @@ const userRouter = require('./routers/user.router');
 const contactRouter = require('./routers/contact.router');
 const chatRoomRouter = require('./routers/chatRoom.router');
 const {addNewMessage, deleteMessage, deleUnSeen} = require('./services/message');
+const {addRoom} = require('./services/room');
 const {sendNoti} = require('./services/auth');
 db.connect();
 
@@ -54,7 +55,7 @@ io.on('connection', (socket) => {
   socket.on('chat', async (msg) => {
     const newMessage = await addNewMessage(msg.room, msg.message);
     console.log("new messages", newMessage);
-    await sendNoti(msg.fcmToken, msg.message)
+    await sendNoti(msg.fcmToken, newMessage, msg.room);
     io.to(msg.room).emit('chat', {room: msg.room, message: newMessage});
   });
 
@@ -67,6 +68,14 @@ io.on('connection', (socket) => {
   socket.on('deleteUnSeen', async (msg) => {
     await deleUnSeen(msg.room, msg.email);
   });
+
+  socket.on('addRoom', async (msg) => {
+    const newChatRoom = await addRoom(msg.room);
+    console.log("new chat room", newChatRoom);
+    if (newChatRoom) {
+      io.to(newChatRoom.email).emit('addRoom', newChatRoom);
+    }
+  })
 
   socket.on('disconnect', () => {
     const userOnlineCurrent = userOnline.filter(item => !userOnlineRoom.includes(item));
