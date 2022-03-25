@@ -45,15 +45,15 @@ module.exports.addContact = async (req, res) => {
       });
       await newContact.save();
 
-      const chatRooms = await ChatRoom.find({email: {"$all": [contact.emailMe, userFriend.email]}});
-      const room = chatRooms.filter(data => data.email.length === 2)
-      if (room.length === 0) {
-        const newChatRoom = new ChatRoom({
-          email : [contact.emailMe, userFriend.email],
-          unSeens: [{email: contact.emailMe}, {email: userFriend.email}]
-        })
-        await newChatRoom.save();
-      }
+      // const chatRooms = await ChatRoom.find({email: {"$all": [contact.emailMe, userFriend.email]}});
+      // const room = chatRooms.filter(data => data.email.length === 2)
+      // if (room.length === 0) {
+      //   const newChatRoom = new ChatRoom({
+      //     email : [contact.emailMe, userFriend.email],
+      //     unSeens: [{email: contact.emailMe}, {email: userFriend.email}]
+      //   })
+      //   await newChatRoom.save();
+      // }
 
       res.status(200).send({
         errorCode: '0',
