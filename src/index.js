@@ -55,7 +55,7 @@ io.on('connection', (socket) => {
   socket.on('chat', async (msg) => {
     const newMessage = await addNewMessage(msg.room, msg.message);
     console.log("new messages", newMessage);
-    await sendNoti(msg.fcmToken, newMessage, msg.room);
+    await sendNoti(msg.fcmToken, msg.message, msg.room);
     io.to(msg.room).emit('chat', {room: msg.room, message: newMessage});
   });
 
