@@ -74,9 +74,15 @@ io.on('connection', (socket) => {
     const newChatRoom = await addRoom(msg.room);
     console.log("new chat room", newChatRoom);
     if (newChatRoom) {
-      // socket.join(newChatRoom._id);
-      // console.log(socket.rooms)
       io.to(newChatRoom.email).emit('addRoom', newChatRoom);
+    }
+  })
+
+  socket.on('updateRoom', async (msg) => {
+    const newChatRoom = await updateRoom(msg.room);
+    console.log("new chat room", newChatRoom);
+    if (newChatRoom) {
+      io.to(newChatRoom.email).emit('updateRoom', newChatRoom);
     }
   })
 

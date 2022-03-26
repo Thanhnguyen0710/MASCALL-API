@@ -32,3 +32,14 @@ module.exports.addRoom = async (room) => {
     console.log(err)
   }
 }
+
+module.exports.addRoom = async (room) => {
+  try {
+    const newChatRoom = await ChatRoom.findOneAndUpdate({_id: room._id}, room, {new: true});
+    const user = await User.find({email: {'$in': newChatRoom.email}})
+    newChatRoom.user = user;
+    return newChatRoom;
+  } catch (err) {
+    console.log(err)
+  }
+}
