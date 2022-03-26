@@ -4,7 +4,7 @@ const userRouter = require('./routers/user.router');
 const contactRouter = require('./routers/contact.router');
 const chatRoomRouter = require('./routers/chatRoom.router');
 const {addNewMessage, deleteMessage, deleUnSeen} = require('./services/message');
-const {addRoom} = require('./services/room');
+const {addRoom, updateRoom} = require('./services/room');
 const {sendNoti} = require('./services/auth');
 db.connect();
 
