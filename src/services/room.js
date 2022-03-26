@@ -33,7 +33,7 @@ module.exports.addRoom = async (room) => {
   }
 }
 
-module.exports.addRoom = async (room) => {
+module.exports.updateRoom = async (room) => {
   try {
     const newChatRoom = await ChatRoom.findOneAndUpdate({_id: room._id}, room, {new: true});
     const user = await User.find({email: {'$in': newChatRoom.email}})
