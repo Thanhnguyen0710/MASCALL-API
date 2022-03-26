@@ -44,6 +44,7 @@ io.on('connection', (socket) => {
     socket.join(room);
     const emailRegexr = /^\w[\w\d\.]+@[\w\.]+\w$/
     socket.rooms.forEach(item => {
+      console.log(item)
       if (item.match(emailRegexr)) {
         userOnlineRoom.push(item);
       }
@@ -73,7 +74,8 @@ io.on('connection', (socket) => {
     const newChatRoom = await addRoom(msg.room);
     console.log("new chat room", newChatRoom);
     if (newChatRoom) {
-      socket.join(newChatRoom._id);
+      // socket.join(newChatRoom._id);
+      // console.log(socket.rooms)
       io.to(newChatRoom.email).emit('addRoom', newChatRoom);
     }
   })
