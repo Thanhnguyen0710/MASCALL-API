@@ -63,7 +63,7 @@ module.exports.sendNoti = async (fcmToken, message, roomId) => {
       body: message.type !== "text" ? contentImage : message.content,
     },
     data: {
-      roomId: roomId
+      roomId: roomId,
     }
   };
 

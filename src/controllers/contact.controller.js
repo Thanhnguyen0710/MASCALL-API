@@ -158,3 +158,17 @@ module.exports.deleteContact = async (req, res) => {
     res.status(401).send("Bad request");
   }
 }
+
+module.exports.searchContact = async (req, res) => {
+  const query = req.query.search;
+  try {
+    const dataPhone = await User.find({phoneNumber: new RegExp(query)});
+    res.status(200).send({
+      errorCode: '0',
+      errorMessages: 'Success',
+      data: data
+    })
+  } catch (error) {
+    res.status(401).send("Bad request");
+  }
+}
