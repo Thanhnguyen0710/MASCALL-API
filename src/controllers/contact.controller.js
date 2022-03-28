@@ -162,7 +162,7 @@ module.exports.deleteContact = async (req, res) => {
 module.exports.searchContact = async (req, res) => {
   const query = req.query.search;
   try {
-    const dataPhone = await User.find({phoneNumber: new RegExp(query)});
+    const dataPhone = await Contact.find({phoneNumber: new RegExp(query)});
     res.status(200).send({
       errorCode: '0',
       errorMessages: 'Success',
