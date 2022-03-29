@@ -166,7 +166,7 @@ module.exports.searchContact = async (req, res) => {
     res.status(200).send({
       errorCode: '0',
       errorMessages: 'Success',
-      data: data
+      data: dataPhone
     })
   } catch (error) {
     res.status(401).send("Bad request");
