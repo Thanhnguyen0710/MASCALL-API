@@ -70,7 +70,7 @@ module.exports.addContact = async (req, res) => {
       })
     }
   } catch (error) {
-    res.status(401).send("Bad request");
+    res.status(404).send("Bad request");
   }
 }
 
@@ -92,7 +92,7 @@ module.exports.getContact = async (req, res) => {
       })
     }
   } catch (error) {
-    res.status(401).send("Bad request");
+    res.status(404).send("Bad request");
   }
 }
 
@@ -141,7 +141,7 @@ module.exports.updateContact = async (req, res) => {
       });
     }
   } catch (error) {
-    res.status(401).send("Bad request");
+    res.status(404).send("Bad request");
   }
 }
 
@@ -155,7 +155,7 @@ module.exports.deleteContact = async (req, res) => {
       data: null
     })
   } catch (error) {
-    res.status(401).send("Bad request");
+    res.status(404).send("Bad request");
   }
 }
 
@@ -169,6 +169,6 @@ module.exports.searchContact = async (req, res) => {
       data: dataPhone
     })
   } catch (error) {
-    res.status(401).send("Bad request");
+    res.status(404).send("Bad request");
   }
 }

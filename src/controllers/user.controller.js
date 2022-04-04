@@ -21,7 +21,7 @@ module.exports.register = async (req, res) => {
       })
     }
   } catch (error) {
-    res.status(401).send("Bad request");
+    res.status(404).send("Bad request");
   }
 }
 
@@ -36,11 +36,11 @@ module.exports.login = async (req, res) => {
         data: user
       })
     } else {
-      res.status(401).send("Bad request");
+      res.status(404).send("Bad request");
     }
     
   } catch (error) {
-    res.status(401).send("Bad request");
+    res.status(404).send("Bad request");
   }
 }
 
@@ -58,7 +58,7 @@ module.exports.updateUser = async (req, res) => {
       data: user
     })
   } catch (error) {
-    res.status(401).send("Bad request");
+    res.status(404).send("Bad request");
   }
 }
 
@@ -76,7 +76,7 @@ module.exports.searchUser = async (req, res) => {
       data: data
     })
   } catch (error) {
-    res.status(401).send("Bad request");
+    res.status(404).send("Bad request");
   }
 }
 

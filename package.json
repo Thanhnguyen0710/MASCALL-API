@@ -21,6 +21,7 @@
     "express": "^4.17.2",
     "firebase-admin": "^10.0.2",
     "install": "^0.13.0",
+    "jsonwebtoken": "^8.5.1",
     "mongodb": "^4.3.0",
     "mongoose": "^6.1.6",
     "npm": "^8.3.0",

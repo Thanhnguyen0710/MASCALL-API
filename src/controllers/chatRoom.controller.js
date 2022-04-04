@@ -35,7 +35,7 @@ module.exports.getRoom = async (req, res) => {
       data: chatRooms
     })
   } catch (error) {
-    res.status(401).send("Bad request");
+    res.status(404).send("Bad request");
   }
 }
 
@@ -43,7 +43,7 @@ module.exports.updateRoom = async (req, res) => {
   try {
 
   } catch (error) {
-    res.status(401).send("Bad request");
+    res.status(404).send("Bad request");
   }
 }
 
@@ -57,6 +57,6 @@ module.exports.deleteRoom = async (req, res) => {
       data: null
     })
   } catch (error) {
-    res.status(401).send("Bad request");
+    res.status(404).send("Bad request");
   }
 }

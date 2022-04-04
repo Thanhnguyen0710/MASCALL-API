@@ -3,6 +3,7 @@ const db = require('./models/db');
 const userRouter = require('./routers/user.router');
 const contactRouter = require('./routers/contact.router');
 const chatRoomRouter = require('./routers/chatRoom.router');
+const stringeeRouter = require('./routers/stringee.router');
 const {addNewMessage, deleteMessage, deleUnSeen} = require('./services/message');
 const {addRoom, updateRoom} = require('./services/room');
 const {sendNoti} = require('./services/auth');
@@ -21,6 +22,7 @@ app.use(express.urlencoded({ extended: true }))
 app.use('/user', userRouter);
 app.use('/contact', contactRouter);
 app.use('/chatroom', chatRoomRouter);
+app.use('/stringee', stringeeRouter);
 
 app.get('/', (req, res) => {
   res.send('Hello World!');
