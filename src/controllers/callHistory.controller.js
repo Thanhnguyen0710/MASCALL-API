@@ -1,4 +1,5 @@
 const CallHistory = require('../models/CallHistory');
+const Contact = require('../models/Contact');
 
 module.exports.addCallHistory = async (req, res) => {
   const callHistory = req.body;
@@ -19,6 +20,17 @@ module.exports.getAllCallHistory = async (req, res) => {
   const query = req.query.email;
   try {
     const callHistory = await CallHistory.find({"$or": [{from: query}, {to: query}]});
+    for (let i = 0; i < callHistory.length ; i++) {
+      let emailMe = query;
+      let email = '';
+      if (callHistory[i].from === emailMe) {
+        email = callHistory[i].to
+      } else {
+        email = callHistory[i].from
+      }
+      const contact = await Contact.findOne({emailMe: emailMe, email: email});
+      callHistory[i].user =contact.toObject();
+    }
     res.status(200).send({
       errorCode: '0',
       errorMessages: 'Success',

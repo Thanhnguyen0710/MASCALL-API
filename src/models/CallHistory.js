@@ -7,6 +7,7 @@ const CallHistory = new Schema({
   to: {type: String},
   isMissedCall: {type: Boolean},
   time: {type: Number},
+  user: {type: Object},
   createdDate: {type: Date, default: Date.now()}
 })
 
