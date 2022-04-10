@@ -4,6 +4,7 @@ const userRouter = require('./routers/user.router');
 const contactRouter = require('./routers/contact.router');
 const chatRoomRouter = require('./routers/chatRoom.router');
 const stringeeRouter = require('./routers/stringee.router');
+const callHistoryRouter = require('./routers/callHistory.router');
 const {addNewMessage, deleteMessage, deleUnSeen} = require('./services/message');
 const {addRoom, updateRoom} = require('./services/room');
 const {sendNoti} = require('./services/auth');
@@ -23,6 +24,7 @@ app.use('/user', userRouter);
 app.use('/contact', contactRouter);
 app.use('/chatroom', chatRoomRouter);
 app.use('/stringee', stringeeRouter);
+app.use('/callhistory', callHistoryRouter);
 
 app.get('/', (req, res) => {
   res.send('Hello World!');

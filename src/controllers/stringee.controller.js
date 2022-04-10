@@ -6,7 +6,7 @@ const apiKeySecret = API_KEY_SECRET;
 module.exports.getToken =  async (req, res) => {
   const userId = req.params.id;
   var now = Math.floor(Date.now() / 1000);
-	var exp = now + 36000;
+	var exp = now + 3600;
 
 	var header = {cty: "stringee-api;v=1"};
 	var payload = {
