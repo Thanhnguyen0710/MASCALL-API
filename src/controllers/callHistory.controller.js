@@ -29,7 +29,7 @@ module.exports.getAllCallHistory = async (req, res) => {
         email = callHistory[i].from
       }
       const contact = await Contact.findOne({emailMe: emailMe, email: email});
-      callHistory[i].user =contact.toObject();
+      callHistory[i].user = contact;
     }
     res.status(200).send({
       errorCode: '0',
