@@ -1,2 +1,2 @@
-module.exports.API_KEY_SECRET = "YOUR_API_KEY_SECRET";
-module.exports.API_KEY_SID = "YOUR_API_KEY_SID";
+module.exports.API_KEY_SECRET = "ZUgxOGNGWDhzMGFxNEd6MlJ5VHZqWjF1TFVkUE42U28=";
+module.exports.API_KEY_SID = "SKEswCh4qYsGLeKQMMIxv2Qro6L27XM0VN";
