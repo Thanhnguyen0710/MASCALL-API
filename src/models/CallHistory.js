@@ -8,7 +8,7 @@ const CallHistory = new Schema({
   isMissedCall: {type: Boolean},
   time: {type: Number},
   user: {type: Object},
-  createdDate: {type: Date, default: Date.now()}
+  createdDate: {type: Date, default: Date.now}
 })
 
 module.exports = mongoose.model('CallHistory', CallHistory);
