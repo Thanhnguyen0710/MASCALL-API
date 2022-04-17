@@ -19,7 +19,7 @@ module.exports.addCallHistory = async (req, res) => {
 module.exports.getAllCallHistory = async (req, res) => {
   const query = req.query.email;
   try {
-    const callHistory = await CallHistory.find({"$or": [{from: query}, {to: query}]}).sort({updatedDate: -1});
+    const callHistory = await CallHistory.find({"$or": [{from: query}, {to: query}]}).sort({createdDate: -1});
     for (let i = 0; i < callHistory.length ; i++) {
       let emailMe = query;
       let email = '';
@@ -45,7 +45,7 @@ module.exports.getCallHistory = async (req, res) => {
   const query = req.query.phoneOrEmail;
   const email = req.params.email;
   try {
-    const callHistory = await CallHistory.find({from: {"$in": [query, email]}, to: {"$in": [query, email]}}).sort({updatedDate: -1});
+    const callHistory = await CallHistory.find({from: {"$in": [query, email]}, to: {"$in": [query, email]}}).sort({createdDate: -1});
     res.status(200).send({
       errorCode: '0',
       errorMessages: 'Success',
