@@ -1,9 +1,13 @@
 const CallHistory = require('../models/CallHistory');
 const Contact = require('../models/Contact');
+const {sendNoti} = require('../services/auth');
 
 module.exports.addCallHistory = async (req, res) => {
   const callHistory = req.body;
   try {
+    if (callHistory.isMissedCall) {
+      sendNoti(callHistory.fcmToken, {name: "Cuộc gọi nhỡ", type: "text", content: `Bạn đã bỏ lỡ một cuộc gọi của ${callHistory.name}`}, "")
+    }
     const newCallHistory = new CallHistory(callHistory);
     await newCallHistory.save();
     res.status(200).send({
