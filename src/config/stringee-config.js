@@ -1,2 +1,2 @@
-module.exports.API_KEY_SECRET = "ZUgxOGNGWDhzMGFxNEd6MlJ5VHZqWjF1TFVkUE42U28=";
-module.exports.API_KEY_SID = "SKEswCh4qYsGLeKQMMIxv2Qro6L27XM0VN";
+module.exports.API_KEY_SECRET = "cW16clJPMks5RkVlWVpybTZIZXhzRXRNOFR5SHNlcGE=";
+module.exports.API_KEY_SID = "SKN5PcuY8QrgduJ23pgxgacFhObHQdxdY";
