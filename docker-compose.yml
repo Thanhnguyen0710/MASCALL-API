@@ -1,0 +1,8 @@
+version: 'v2.15.1'
+services:
+  mascall-api:
+    image: mascall-api:1.0.0
+    environment:
+      - PORT=3005
+    ports:
+      - 3000:3005
