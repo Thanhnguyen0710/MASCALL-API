@@ -1,7 +1,7 @@
 pineline {
     agent any
     stages {
-        stage('clone') {
+        stage('Clone') {
             steps {
                 git 'https://github.com/Thanhnguyen0710/MASCALL-API'
             }
