@@ -1,4 +1,5 @@
 pineline {
+    agent any
     stages {
         stage('clone') {
             steps {
