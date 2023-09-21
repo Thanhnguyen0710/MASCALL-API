@@ -16,5 +16,10 @@ pipeline {
                 }
             }
         }
+        stage("run container") {
+            steps{
+                bat "docker-compose up -d"
+            }
+        }
     }
 }
