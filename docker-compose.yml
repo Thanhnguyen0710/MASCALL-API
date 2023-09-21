@@ -1,7 +1,7 @@
 version: 'v2.15.1'
 services:
   mascall-api:
-    image: mascall-api:1.0.0
+    image: thanhnc2000/mascall-api:1.0.0
     environment:
       - PORT=3005
     ports:
