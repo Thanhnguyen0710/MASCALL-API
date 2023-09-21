@@ -9,7 +9,7 @@ pipeline {
         stage("Build docker images") {
             steps {
                 script {
-                    sh "docker build -t thanhnc2000/mascall-api:1.0.0 ."
+                    bat "docker build -t thanhnc2000/mascall-api:1.0.0 ."
                 }
             }
         }
