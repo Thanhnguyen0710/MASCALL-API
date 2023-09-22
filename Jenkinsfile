@@ -41,7 +41,12 @@ pipeline {
             echo "unstable state"
         }
         failure {
-            echo "failure state"
+            bat """
+            curl -X POST \
+            -H 'Content-Type: application/json' \
+            -d '{"chat_id": "-831789349", "text": " \ud83d\ude21 \ud83d\ude21 \ud83d\ude21 \nJobname: Mascall-api \nStatus: FAILURE  ", "disable_notification": true}' \
+            https://api.telegram.org/bot5894657515:AAEKCr-v0DBzPb6uoiyWXJeVuJzT2Tuk5vc/sendMessage
+            """
         }
         changed {
             echo "change state"
