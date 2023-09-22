@@ -1,7 +1,7 @@
 pipeline {
     agent any
     stages {
-        stage("Build docker images") {
+        stage("Build docker image") {
             steps {
                 script {
                     bat "docker build -t thanhnc2000/mascall-api:1.0.0 ."
