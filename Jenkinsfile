@@ -17,9 +17,34 @@ pipeline {
             }
         }
         stage("run container") {
-            steps{
-                bat "docker-compose up -d"
+            steps {
+                script {
+                    bat "docker-compose up -d"
+                }
             }
+        }
+    }
+
+    post {
+        always {
+            echo "alaways"
+        }
+        success {
+        bat """
+            curl -X POST \
+            -H 'Content-Type: application/json' \
+            -d '{"chat_id": "-831789349", "text": " \ud83d\ude21 \ud83d\ude21 \ud83d\ude21 \nJobname: Mascall-api \nStatus: SUCCESS  ", "disable_notification": true}' \
+            https://api.telegram.org/bot5894657515:AAEKCr-v0DBzPb6uoiyWXJeVuJzT2Tuk5vc/sendMessage
+            """
+        }
+        unstable {
+
+        }
+        failure {
+
+        }
+        changed {
+            echo "change state"
         }
     }
 }
