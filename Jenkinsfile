@@ -38,10 +38,10 @@ pipeline {
             """
         }
         unstable {
-
+            echo "unstable state"
         }
         failure {
-
+            echo "failure state"
         }
         changed {
             echo "change state"
