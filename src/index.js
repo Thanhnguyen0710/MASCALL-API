@@ -27,7 +27,7 @@ app.use('/stringee', stringeeRouter);
 app.use('/callhistory', callHistoryRouter);
 
 app.get('/', (req, res) => {
-  res.send('Hello World! Ngon');
+  res.send('Hello World!');
 })
 
 
