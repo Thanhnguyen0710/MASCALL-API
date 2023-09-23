@@ -5,7 +5,10 @@ pipeline {
             steps {
                 script {
                     bat """
-                    curl -d chat_id=-831789349 -d text="\ud83d\udcaa \ud83d\udcaa \ud83d\udcaa Jobname: Mascall-api Status: Start deploy"  https://api.telegram.org/bot5894657515:AAEKCr-v0DBzPb6uoiyWXJeVuJzT2Tuk5vc/sendMessage
+                     curl -X POST \
+     -H 'Content-Type: application/json' \
+     -d '{"chat_id": "-831789349", "text": " \ud83d\udc4d \ud83d\udc4d \ud83d\udc4d Jobname: MASCALL_API Build number: ${BUILD_NUMBER} Status: SUCCESS", "disable_notification": true}' \
+     https://api.telegram.org/bot5894657515:AAEKCr-v0DBzPb6uoiyWXJeVuJzT2Tuk5vc/sendMessage
                     """
                     bat "docker build -t thanhnc2000/mascall-api:1.0.0 ."
                 }
@@ -33,7 +36,10 @@ pipeline {
         }
         success {
         bat """
-            curl -d chat_id=-831789349 -d parse_mode="HTML" -d text="<tg-emoji emoji-id="5368324170671202286"></tg-emoji><tg-emoji emoji-id="5368324170671202286"></tg-emoji><tg-emoji emoji-id="5368324170671202286"></tg-emoji><code>ds</code>S&lt;, &gt;, &amp;ervice name: <strong>Mascall-api</strong><pre>ds</pre>Status: <strong>&quot;SUCCESS</strong>"  https://api.telegram.org/bot5894657515:AAEKCr-v0DBzPb6uoiyWXJeVuJzT2Tuk5vc/sendMessage
+            curl -X POST \
+     -H 'Content-Type: application/json' \
+     -d '{"chat_id": "-831789349", "text": " \ud83d\udc4d \ud83d\udc4d \ud83d\udc4d Jobname: MASCALL_API Build number: ${BUILD_NUMBER} Status: SUCCESS", "disable_notification": true}' \
+     https://api.telegram.org/bot5894657515:AAEKCr-v0DBzPb6uoiyWXJeVuJzT2Tuk5vc/sendMessage
             """
         }
         unstable {
