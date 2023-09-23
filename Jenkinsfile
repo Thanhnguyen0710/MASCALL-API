@@ -5,7 +5,7 @@ pipeline {
             steps {
                 script {
                     bat """
-                    curl -d chat_id=-831789349 -d text="\ud83d\udc4d \ud83d\udc4d \ud83d\udc4d Jobname: MASCALL_API Build number: ${BUILD_NUMBER} Status: SUCCESS" -d disable_notification=true  https://api.telegram.org/bot5894657515:AAEKCr-v0DBzPb6uoiyWXJeVuJzT2Tuk5vc/sendMessage
+                    curl -h Content-Type="application/json" -d chat_id=-831789349 -d text="\ud83d\udc4d \ud83d\udc4d \ud83d\udc4d Jobname: MASCALL_API Build number: ${BUILD_NUMBER} Status: SUCCESS" -d disable_notification=true  https://api.telegram.org/bot5894657515:AAEKCr-v0DBzPb6uoiyWXJeVuJzT2Tuk5vc/sendMessage
                     """
                     bat "docker build -t thanhnc2000/mascall-api:1.0.0 ."
                 }
