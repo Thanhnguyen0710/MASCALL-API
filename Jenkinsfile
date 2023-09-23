@@ -5,7 +5,7 @@ pipeline {
             steps {
                 script {
                     bat """
-                    curl -d chat_id=-831789349 -d text="Jobname: Mascall-api Status: START DEPLOY"  https://api.telegram.org/bot5894657515:AAEKCr-v0DBzPb6uoiyWXJeVuJzT2Tuk5vc/sendMessage
+                    curl -d parse_mode="HTML" -d chat_id=-831789349 -d text="Service name: <strong>Mascall-api</strong> Status: <strong>START DEPLOY</strong>"  https://api.telegram.org/bot5894657515:AAEKCr-v0DBzPb6uoiyWXJeVuJzT2Tuk5vc/sendMessage
                     """
                     bat "docker build -t thanhnc2000/mascall-api:1.0.0 ."
                 }
@@ -33,7 +33,7 @@ pipeline {
         }
         success {
         bat """
-            curl -d chat_id=-831789349 -d text="Jobname: Mascall-api Status: SUCCESS"  https://api.telegram.org/bot5894657515:AAEKCr-v0DBzPb6uoiyWXJeVuJzT2Tuk5vc/sendMessage
+            curl -d parse_mode="HTML" -d chat_id=-831789349 -d text="Service name: <strong>Mascall-api</strong> Status: <strong>SUCCESS</strong>"  https://api.telegram.org/bot5894657515:AAEKCr-v0DBzPb6uoiyWXJeVuJzT2Tuk5vc/sendMessage
             """
         }
         unstable {
@@ -41,7 +41,7 @@ pipeline {
         }
         failure {
             bat """
-            curl -d chat_id=-831789349 -d text="Jobname: Mascall-api Status: FAILURE"  https://api.telegram.org/bot5894657515:AAEKCr-v0DBzPb6uoiyWXJeVuJzT2Tuk5vc/sendMessage
+            curl -d parse_mode="HTML" -d chat_id=-831789349 -d text="Service name: <strong>Mascall-api</strong> Status: <strong>FAILURE</strong>"  https://api.telegram.org/bot5894657515:AAEKCr-v0DBzPb6uoiyWXJeVuJzT2Tuk5vc/sendMessage
             """
         }
         changed {
