@@ -33,7 +33,7 @@ pipeline {
         }
         success {
         bat """
-            curl -d chat_id=-831789349 -d text=	\ud83d\udc4c 	\ud83d\udc4c 	\ud83d\udc4c Jobname: Mascall-api \nStatus: SUCCESS"  https://api.telegram.org/bot5894657515:AAEKCr-v0DBzPb6uoiyWXJeVuJzT2Tuk5vc/sendMessage
+            curl -d chat_id=-831789349 -d text=	\ud83d\udc4c 	\ud83d\udc4c 	\ud83d\udc4c Jobname: Mascall-api Status: SUCCESS"  https://api.telegram.org/bot5894657515:AAEKCr-v0DBzPb6uoiyWXJeVuJzT2Tuk5vc/sendMessage
             """
         }
         unstable {
@@ -41,7 +41,7 @@ pipeline {
         }
         failure {
             bat """
-            curl -d chat_id=-831789349 -d text="\u2620\ufe0f \u2620\ufe0f \u2620\ufe0f Jobname: Mascall-api \nStatus: FAILURE"  https://api.telegram.org/bot5894657515:AAEKCr-v0DBzPb6uoiyWXJeVuJzT2Tuk5vc/sendMessage
+            curl -d chat_id=-831789349 -d text="\u2620\ufe0f \u2620\ufe0f \u2620\ufe0f Jobname: Mascall-api Status: FAILURE"  https://api.telegram.org/bot5894657515:AAEKCr-v0DBzPb6uoiyWXJeVuJzT2Tuk5vc/sendMessage
             """
         }
         changed {
