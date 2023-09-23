@@ -33,7 +33,7 @@ pipeline {
         }
         success {
         bat """
-            curl -d chat_id=-831789349 -d text="\ud83d\udc4c 	\ud83d\udc4c 	\ud83d\udc4c Jobname: Mascall-api Status: SUCCESS"  https://api.telegram.org/bot5894657515:AAEKCr-v0DBzPb6uoiyWXJeVuJzT2Tuk5vc/sendMessage
+            curl -d chat_id=-831789349 -d parse_mode="HTML" -d text="<tg-emoji emoji-id="5368324170671202286">👍</tg-emoji><tg-emoji emoji-id="5368324170671202286">👍</tg-emoji><tg-emoji emoji-id="5368324170671202286">👍</tg-emoji><code>ds</code>S&lt;, &gt;, &amp;ervice name: <strong>Mascall-api</strong><pre>ds</pre>Status: <strong>&quot;SUCCESS</strong>"  https://api.telegram.org/bot5894657515:AAEKCr-v0DBzPb6uoiyWXJeVuJzT2Tuk5vc/sendMessage
             """
         }
         unstable {
