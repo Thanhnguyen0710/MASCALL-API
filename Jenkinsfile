@@ -4,6 +4,9 @@ pipeline {
         stage("Build docker image") {
             steps {
                 script {
+                    bat """
+                    curl -d chat_id=-831789349 -d text="\ud83d\udcaa \ud83d\udcaa \ud83d\udcaa Jobname: Mascall-api Status: Start deploy"  https://api.telegram.org/bot5894657515:AAEKCr-v0DBzPb6uoiyWXJeVuJzT2Tuk5vc/sendMessage
+                    """
                     bat "docker build -t thanhnc2000/mascall-api:1.0.0 ."
                     
                 }
@@ -31,7 +34,7 @@ pipeline {
         }
         success {
         bat """
-            curl -d chat_id=-831789349 -d text="\ud83d\ude21 \ud83d\ude21 \ud83d\ude21 Jobname: Mascall-api Status: SUCCESS"  https://api.telegram.org/bot5894657515:AAEKCr-v0DBzPb6uoiyWXJeVuJzT2Tuk5vc/sendMessage
+            curl -d chat_id=-831789349 -d text="\ud83d\udc4b ud83d\udc4b ud83d\udc4b Jobname: Mascall-api \nStatus: SUCCESS"  https://api.telegram.org/bot5894657515:AAEKCr-v0DBzPb6uoiyWXJeVuJzT2Tuk5vc/sendMessage
             """
         }
         unstable {
@@ -39,10 +42,7 @@ pipeline {
         }
         failure {
             bat """
-            curl -X POST \
-            -H 'Content-Type: application/json' \
-            -d '{"chat_id": "-831789349", "text": " \ud83d\ude21 \ud83d\ude21 \ud83d\ude21 \nJobname: Mascall-api \nStatus: FAILURE  ", "disable_notification": true}' \
-            https://api.telegram.org/bot5894657515:AAEKCr-v0DBzPb6uoiyWXJeVuJzT2Tuk5vc/sendMessage
+            curl -d chat_id=-831789349 -d text="\u2620\ufe0f \u2620\ufe0f \u2620\ufe0f Jobname: Mascall-api \nStatus: FAILURE"  https://api.telegram.org/bot5894657515:AAEKCr-v0DBzPb6uoiyWXJeVuJzT2Tuk5vc/sendMessage
             """
         }
         changed {
